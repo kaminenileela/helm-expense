@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx #pod = replicaset-name-<some-random-string>
+  # these labels are deployment related labels
+  labels:
+    app: nginx
+    purpose: helm
+spec:
+  # replicas: 20
+  replicas: {{ .Values.deployment.replicas }}
+  selector:
+    matchLabels:
+      app: nginx
+      project: helm
+  # below is pod definition. pod is subset of replicaset   
+  template:
+    metadata:
+      labels:
+        app: nginx
+        project: helm
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:{{ .Values.deployment.imageVersion }}
