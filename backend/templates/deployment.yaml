@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+  namespace: expense
+  # these labels are deployment related labels
+  labels:
+    component: backend
+    project: expense
+    tier: app
+spec:
+  replicas: {{ .Values.deployment.replicas }}
+  selector:
+    matchLabels:
+      component: backend
+      project: expense
+      tier: app
+  # below is pod definition. pod is subset of replicaset   
+  template:
+    metadata:
+      labels:
+        component: backend
+        project: expense
+        tier: app
+    spec:
+      containers:
+      - name: backend
+        image: leelakamineni/backend:{{ .Values.deployment.imageVersion }}
+        envFrom:
+        - configMapRef:
+            name: backend

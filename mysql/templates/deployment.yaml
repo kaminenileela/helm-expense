@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql
+  namespace: expense
+  # these labels are deployment related labels
+  labels:
+    component: mysql
+    project: expense
+    tier: db
+spec:
+  replicas: {{ .Values.deployment.replicas }}
+  selector:
+    matchLabels:
+      component: mysql
+      project: expense
+      tier: db
+  # below is pod definition. pod is subset of replicaset   
+  template:
+    metadata:
+      labels:
+        component: mysql
+        project: expense
+        tier: db
+    spec:
+      containers:
+      - name: mysql
+        image: leelakamineni/{{ .Values.deployment.imageVersion }}
+    
