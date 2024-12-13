@@ -4,5 +4,5 @@ deployment:
   replicas: 2 #3
   imageVersion: latest  #mainline-bookworm-perl
 service:
-  nodePort: 32768
+  nodePort: 31786 #valid port range 30000-32767
   
