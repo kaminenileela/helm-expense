@@ -25,5 +25,5 @@ spec:
     spec:
       containers:
       - name: mysql
-        image: leelakamineni/{{ .Values.deployment.imageVersion }}
+        image: leelakamineni/mysql:{{ .Values.deployment.imageVersion }}
     
