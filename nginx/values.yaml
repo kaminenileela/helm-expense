@@ -1,8 +1,8 @@
 configmap:
   port: 8080
 deployment:
-  replicas: 2 #3
-  imageVersion: latest  #mainline-bookworm-perl
+  replicas: 3 #2
+  imageVersion: mainline-bookworm-perl #latest
 service:
   nodePort: 31786 #valid port range 30000-32767
   
